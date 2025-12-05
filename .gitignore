@@ -1,0 +1,81 @@
+# Arquivos e pastas do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Ambiente virtual (venv)
+venv/
+.env/
+.venv/
+ENV/
+env/
+*.env/
+
+# Arquivos de log
+*.log
+
+# Cache do pip
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Arquivos de configuração temporários
+*.sqlite3
+*.db
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# Arquivos de IDEs comuns
+.vscode/
+.idea/
+*.code-workspace
+
+# Arquivos do Jupyter Notebook
+.ipynb_checkpoints/
+
+# Arquivos de testes e cobertura
+htmlcov/
+.coverage
+.coverage.*
+.cache
+.noseids
+pytest_cache/
+.tox/
+
+# Arquivos de documentação gerados
+docs/_build/
+
+# Arquivos de distribuição
+*.tar.gz
+*.egg
+*.whl
+
+# Arquivos de virtualenv no Windows
+Scripts/
+Lib/
+Include/
+
+# Arquivos de ambiente no Windows
+env.bat
+activate.bat
+
+# Arquivos do MyPy e outros linters
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Arquivos de lock do Poetry ou Pipenv (se usados, editar conforme necessidade)
+poetry.lock
+Pipfile.lock
+
+# Arquivos de docker (opcional)
+*.dockerfile
+.dockerignore
+
+chrome-win64/

@@ -1,5 +1,5 @@
-from database.models import criar_tabelas
+from frontend.ui_main import App
 
 if __name__ == "__main__":
-    criar_tabelas()
-    print("Tabelas criadas com sucesso!")
+    app = App()
+    app.mainloop()

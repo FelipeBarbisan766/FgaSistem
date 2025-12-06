@@ -1,58 +1,46 @@
 from .db_manager import get_connection
 
+
 def criar_tabelas():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS usuarios (
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT UNIQUE NOT NULL,
+            user TEXT NOT NULL,
             password TEXT NOT NULL
         )
-    ''')
+    """
+    )
 
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS arquivos (
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS clients (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            path TEXT NOT NULL,
-            date_upload TEXT NOT NULL,
-            shooterId INTERGER NOT NULL,
-            FOREIGN KEY (shooterId) REFERENCES shooter(id)
+            address TEXT,
+            phone TEXT,
+            email TEXT
         )
-    ''')
+    """
+    )
 
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS year (
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS cleans (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            year NUMBER NOT NULL,
-            instructor TEX NOT NULL
+            date DATETIME NOT NULL,
+            price DECIMAL NOT NULL,
+            quantity INTEGER NOT NULL,
+            unitPrice DECIMAL NOT NULL,
+            status TEXT NOT NULL,
+            clientId INTEGER,
+            FOREIGN KEY (clientId) REFERENCES clients(id)
         )
-    ''')
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS servedYear (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            shooterId INTERGER NOT NULL,
-            yearId INTERGER NOT NULL,
-            FOREIGN KEY (yearId) REFERENCES year(id),
-            FOREIGN KEY (shooterId) REFERENCES shooter(id)
-        )
-    ''')
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS shooter (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            ra NUMBER UNIQUE NOT NULL,
-            number NUMBER UNIQUE,
-            name TEXT NOT NULL,
-            email TEXT UNIQUE,
-            cpf NUMBER UNIQUE,
-            phone NUMBER UNIQUE
-        )
-    ''')
+    """
+    )
 
     conn.commit()
     conn.close()

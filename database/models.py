@@ -1,7 +1,7 @@
-from .db_manager import get_connection
+from database.db_manager import get_connection
 
 
-def criar_tabelas():
+def create_tables():
     conn = get_connection()
     cursor = conn.cursor()
 

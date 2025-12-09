@@ -1,6 +1,5 @@
 from database.db_manager import get_connection
 
-
 def create_tables():
     conn = get_connection()
     cursor = conn.cursor()

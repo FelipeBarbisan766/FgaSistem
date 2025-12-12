@@ -7,7 +7,7 @@ class CleanFrame(tk.Frame):
         super().__init__(master)
         cleans = self.get()
         tk.Label(self, text="Bem-vindo à tela de limpezas!").pack(pady=20)
-        tk.Button(self, text="Adicionar Limpeza", command= self.add).pack(pady=10)
+        tk.Button(self, text="Adicionar Limpeza", command=lambda: master.show_frame("AddCleanFrame")).pack(pady=10)
         
         for r in cleans: 
             id, date, price, quantity, unitPrice, status, clientName = r 
@@ -19,6 +19,5 @@ class CleanFrame(tk.Frame):
         cleans = controller.get_cleans()
         return cleans
         
-    def add(self):
-        pass
+    
     

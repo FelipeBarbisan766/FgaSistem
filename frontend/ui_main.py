@@ -2,6 +2,7 @@ import tkinter as tk
 from frontend.ui_cleanTable import CleanFrame
 from frontend.ui_home import HomeFrame
 from frontend.ui_login import LoginFrame
+from frontend.ui_addClean import AddCleanFrame
 
 class App(tk.Tk):
     def __init__(self):
@@ -14,7 +15,8 @@ class App(tk.Tk):
         self.frame_classes = {
             "LoginFrame": LoginFrame,
             "HomeFrame": HomeFrame,
-            "CleanFrame": CleanFrame
+            "CleanFrame": CleanFrame,
+            "AddCleanFrame": AddCleanFrame
         }
 
         for name, F in self.frame_classes.items():

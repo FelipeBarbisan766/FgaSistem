@@ -3,6 +3,7 @@ from frontend.ui_cleanTable import CleanFrame
 from frontend.ui_home import HomeFrame
 from frontend.ui_login import LoginFrame
 from frontend.ui_addClean import AddCleanFrame
+from frontend.ui_clientTable import ClientFrame
 
 class App(tk.Tk):
     def __init__(self):
@@ -16,7 +17,8 @@ class App(tk.Tk):
             "LoginFrame": LoginFrame,
             "HomeFrame": HomeFrame,
             "CleanFrame": CleanFrame,
-            "AddCleanFrame": AddCleanFrame
+            "AddCleanFrame": AddCleanFrame,
+            "ClientFrame": ClientFrame
         }
 
         for name, F in self.frame_classes.items():

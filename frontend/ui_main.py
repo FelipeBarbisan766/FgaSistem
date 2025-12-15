@@ -1,4 +1,5 @@
 import tkinter as tk
+from frontend.ui_addClient import AddClientFrame
 from frontend.ui_cleanTable import CleanFrame
 from frontend.ui_home import HomeFrame
 from frontend.ui_login import LoginFrame
@@ -18,7 +19,8 @@ class App(tk.Tk):
             "HomeFrame": HomeFrame,
             "CleanFrame": CleanFrame,
             "AddCleanFrame": AddCleanFrame,
-            "ClientFrame": ClientFrame
+            "ClientFrame": ClientFrame,
+            "AddClientFrame": AddClientFrame,
         }
 
         for name, F in self.frame_classes.items():

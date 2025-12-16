@@ -32,6 +32,11 @@ class App(tk.Tk):
 
     def show_frame(self, frame_name):
         frame = self.frames[frame_name]
+        if hasattr(frame, "refresh"):
+            try:
+                frame.refresh()
+            except Exception as e:
+                print(f"Erro ao atualizar frame {frame_name}: {e}")
         frame.tkraise()
 
 if __name__ == "__main__":

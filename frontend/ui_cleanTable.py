@@ -28,6 +28,3 @@ class CleanFrame(tk.Frame):
                     f"Quantidade: {quantity} — Preço Unitário: R$ {unitPrice:.2f} — "
                     f"Status: {status} — Cliente: {clientName}")
             tk.Label(self.list_container, text=text, anchor="w", justify="left").pack(fill="x", pady=2)
-
-    def get(self):
-        return controller.get_cleans()

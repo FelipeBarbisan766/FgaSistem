@@ -5,4 +5,7 @@ def get_clients():
     return clients
 
 def post_client(name, address, phone, email):
+    name = name.upper()
+    address = address.upper()
+    email = email.lower()
     return db_clients.insert_client(name, address, phone, email)

@@ -43,3 +43,10 @@ def insert_client(name, address, phone, email):
     )
     conn.commit()
     return True
+
+def remove_client(client_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM clients WHERE id = ?;", (client_id,))
+    conn.commit()
+    return True

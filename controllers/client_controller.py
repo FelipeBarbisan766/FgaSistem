@@ -21,3 +21,6 @@ def post_client(name, address, phone, email):
     address = address.upper()
     email = email.lower()
     return db_clients.insert_client(name, address, phone, email)
+
+def delete_client(client_id):
+    return db_clients.remove_client(client_id)

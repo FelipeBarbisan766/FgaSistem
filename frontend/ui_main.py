@@ -39,14 +39,13 @@ class App(tk.Tk):
             except Exception as e:
                 print(f"Erro em on_show do frame {frame_name}: {e}")
 
-        # Mantém refresh automático
         if hasattr(frame, "refresh"):
             try:
                 frame.refresh()
             except Exception as e:
                 print(f"Erro ao atualizar frame {frame_name}: {e}")
 
-    frame.tkraise()
+        frame.tkraise()
 if __name__ == "__main__":
     app = App()
     app.mainloop()

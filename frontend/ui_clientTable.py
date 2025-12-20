@@ -79,10 +79,19 @@ class ClientFrame(tk.Frame):
             id, name, address, email, phone = r
             text = f"ID: {id} — Nome: {name} — Endereço: {address} — Email: {email} — Telefone: {phone}"
             tk.Label(self.list_container, text=text, anchor="w", justify="left").pack(fill="x", pady=2)
+            tk.Button(
+                self.list_container,
+                text="Remover",
+                command=lambda client_id=id: self.remove_client(client_id)
+            ).pack(pady=2)
 
         self.page_label.config(text=f"Página {self.page + 1} de {max_page + 1} (Total: {total})")
         self.prev_btn.config(state=("normal" if self.page > 0 else "disabled"))
         self.next_btn.config(state=("normal" if self.page < max_page else "disabled"))
         
     def on_show(self):
-        self.page = 0   
+        self.page = 0
+
+    def remove_client(self, client_id):
+        controller.delete_client(client_id)
+        self.refresh()

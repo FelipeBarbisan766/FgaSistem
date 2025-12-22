@@ -1,6 +1,5 @@
-Project for TG 02-041 
+Project for FGA Limpeza de Placa Solar
 
 #python
 #SQLite
 
-the objective is save documents of TG

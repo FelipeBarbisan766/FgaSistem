@@ -16,11 +16,9 @@ class CleanFrame(tk.Frame):
         self.page_size = 20
         self.page = 0  
 
-        # Container da lista
         self.list_container = tk.Frame(self)
         self.list_container.pack(fill="both", expand=True, padx=10, pady=5)
 
-        # Barra de paginação
         self.pagination_bar = tk.Frame(self)
         self.pagination_bar.pack(fill="x", padx=10, pady=5)
 

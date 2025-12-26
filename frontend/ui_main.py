@@ -10,7 +10,9 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("FgaSistem")
-        self.geometry("800x600")
+        self.state("zoomed")  
+        self.resizable(True, True)
+        self.minsize(900, 600)  
 
         self.frames = {}
 

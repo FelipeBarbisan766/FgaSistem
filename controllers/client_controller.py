@@ -1,7 +1,6 @@
 from database import db_clients
 
 def get_clients_page(page: int, page_size: int = 20):
-    
     if page < 0:
         page = 0
     if page_size <= 0:
@@ -15,6 +14,21 @@ def get_clients_total():
 
 def get_clients():
     return db_clients.search_clients()
+
+# -----------------------------
+# NOVO: wrappers para busca filtrada
+# -----------------------------
+def get_clients_page_filtered(query: str, page: int, page_size: int = 20):
+    if page < 0:
+        page = 0
+    if page_size <= 0:
+        page_size = 20
+
+    offset = page * page_size
+    return db_clients.search_clients_paginated_filtered(query=query, limit=page_size, offset=offset)
+
+def get_clients_total_filtered(query: str):
+    return db_clients.count_clients_filtered(query=query)
 
 def post_client(name, address, phone, email):
     name = name.upper()

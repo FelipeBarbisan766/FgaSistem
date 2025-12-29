@@ -34,6 +34,69 @@ def search_clients():
     )
     return cursor.fetchall()
 
+# -----------------------------
+# NOVO: busca com filtro + paginação
+# -----------------------------
+def search_clients_paginated_filtered(query: str, limit: int, offset: int):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    q = (query or "").strip()
+    like = f"%{q}%"
+
+    # se for número, também tenta bater no ID
+    q_int = None
+    try:
+        q_int = int(q)
+    except ValueError:
+        q_int = None
+
+    cursor.execute(
+        """
+        SELECT clients.id, clients.name, clients.address, clients.email, clients.phone
+        FROM clients
+        WHERE
+            (? IS NOT NULL AND clients.id = ?)
+            OR clients.name    LIKE ?
+            OR clients.address LIKE ?
+            OR clients.email   LIKE ?
+            OR clients.phone   LIKE ?
+        ORDER BY clients.id
+        LIMIT ? OFFSET ?;
+        """,
+        (q_int, q_int, like, like, like, like, limit, offset),
+    )
+    return cursor.fetchall()
+
+def count_clients_filtered(query: str):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    q = (query or "").strip()
+    like = f"%{q}%"
+
+    q_int = None
+    try:
+        q_int = int(q)
+    except ValueError:
+        q_int = None
+
+    cursor.execute(
+        """
+        SELECT COUNT(*)
+        FROM clients
+        WHERE
+            (? IS NOT NULL AND clients.id = ?)
+            OR clients.name    LIKE ?
+            OR clients.address LIKE ?
+            OR clients.email   LIKE ?
+            OR clients.phone   LIKE ?;
+        """,
+        (q_int, q_int, like, like, like, like),
+    )
+    (total,) = cursor.fetchone()
+    return total
+
 def insert_client(name, address, phone, email):
     conn = get_connection()
     cursor = conn.cursor()

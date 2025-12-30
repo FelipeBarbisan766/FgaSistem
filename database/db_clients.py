@@ -34,9 +34,7 @@ def search_clients():
     )
     return cursor.fetchall()
 
-# -----------------------------
-# NOVO: busca com filtro + paginação
-# -----------------------------
+
 def search_clients_paginated_filtered(query: str, limit: int, offset: int):
     conn = get_connection()
     cursor = conn.cursor()
@@ -44,7 +42,6 @@ def search_clients_paginated_filtered(query: str, limit: int, offset: int):
     q = (query or "").strip()
     like = f"%{q}%"
 
-    # se for número, também tenta bater no ID
     q_int = None
     try:
         q_int = int(q)

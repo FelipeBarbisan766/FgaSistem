@@ -15,9 +15,7 @@ def get_clients_total():
 def get_clients():
     return db_clients.search_clients()
 
-# -----------------------------
-# NOVO: wrappers para busca filtrada
-# -----------------------------
+
 def get_clients_page_filtered(query: str, page: int, page_size: int = 20):
     if page < 0:
         page = 0

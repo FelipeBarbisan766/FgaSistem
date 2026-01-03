@@ -148,7 +148,7 @@ class ClientFrame(tk.Frame):
         except AttributeError:
             tk.Label(
                 self.list_container,
-                text="Busca ainda não implementada no controller (faltam métodos filtrados)."
+                text="Erro Ao carregar clientes."
             ).pack(pady=5)
             return
 

@@ -26,7 +26,7 @@ class ClientFrame(tk.Frame):
 
         self.search_entry.bind("<Escape>", lambda e: self.hide_search())
 
-        # --- Paginação ---
+       
         self.page_size = 20
         self.page = 0
 
@@ -55,9 +55,7 @@ class ClientFrame(tk.Frame):
 
         self.refresh()
 
-    # -------------------------
-    # Busca: mostrar/esconder
-    # -------------------------
+   
     def show_search(self):
         if not self.search_visible:
             self.search_bar.pack(fill="x", padx=10, pady=(0, 6), before=self.list_container)
@@ -97,9 +95,7 @@ class ClientFrame(tk.Frame):
             self.show_search()
             return
 
-    # -------------------------
-    # Paginação
-    # -------------------------
+   
     def prev_page(self):
         if self.page > 0:
             self.page -= 1

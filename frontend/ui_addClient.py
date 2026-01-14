@@ -20,7 +20,7 @@ class AddClientFrame(tk.Frame):
         self.email_entry = tk.Entry(self)
         self.email_entry.pack(pady=5)
 
-        tk.Button(self, text="Salvar Cliente", command=self.save_client).pack(pady=10)
+        tk.Button(self, text="Salvar", command=self.save_client).pack(pady=10)
             
         tk.Button(self, text="Voltar", command=lambda: master.show_frame("ClientFrame")).pack(pady=10)
     

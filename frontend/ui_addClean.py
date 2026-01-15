@@ -31,7 +31,7 @@ class AddCleanFrame(tk.Frame):
         self.client_entry = tk.Entry(self)
         self.client_entry.pack(pady=5)
 
-        tk.Button(self, text="Salvar Limpeza", command=self.save_clean).pack(pady=10)
+        tk.Button(self, text="Salvar", command=self.save_clean).pack(pady=10)
         tk.Button(self, text="Voltar", command=lambda: master.show_frame("CleanFrame")).pack(pady=10)
     
     def clear_form(self):

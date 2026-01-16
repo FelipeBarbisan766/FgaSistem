@@ -27,7 +27,7 @@ class AddCleanFrame(tk.Frame):
         self.status_entry = tk.Entry(self)
         self.status_entry.pack(pady=5)
 
-        tk.Label(self, text="Cliente (ID):").pack(pady=5) 
+        tk.Label(self, text="Cliente:").pack(pady=5) 
         self.client_entry = tk.Entry(self)
         self.client_entry.pack(pady=5)
 

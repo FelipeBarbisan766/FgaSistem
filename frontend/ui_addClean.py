@@ -19,10 +19,6 @@ class AddCleanFrame(tk.Frame):
         self.quantity_entry = tk.Entry(self)
         self.quantity_entry.pack(pady=5)
 
-        tk.Label(self, text="Preço Unitário:").pack(pady=5) 
-        self.unitPrice_entry = tk.Entry(self)
-        self.unitPrice_entry.pack(pady=5)
-
         tk.Label(self, text="Status:").pack(pady=5) 
         self.status_entry = tk.Entry(self)
         self.status_entry.pack(pady=5)

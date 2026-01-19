@@ -5,7 +5,7 @@ import controllers.clean_controller as controller
 class AddCleanFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        tk.Label(self, text="Adicionar Nova Limpeza").pack(pady=20)
+        tk.Label(self, text="Adicionar Limpeza").pack(pady=20)
         
         tk.Label(self, text="Data:").pack(pady=5) 
         self.date_entry = tk.Entry(self)

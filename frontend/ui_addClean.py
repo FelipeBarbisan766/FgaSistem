@@ -42,7 +42,7 @@ class AddCleanFrame(tk.Frame):
         try:
             date = self.date_entry.get().strip()
             if not date:
-                raise ValueError("Data é obrigatória.")
+                raise ValueError("Data obrigatória.")
 
             price = float(self.price_entry.get().strip())
             quantity = int(self.quantity_entry.get().strip())

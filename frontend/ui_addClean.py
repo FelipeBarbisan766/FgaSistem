@@ -56,7 +56,7 @@ class AddCleanFrame(tk.Frame):
         try:
             result = controller.post_clean(date, price, quantity, unitPrice, status, clientID)
             if result is True:
-                messagebox.showinfo("Sucesso", "Limpeza adicionada com sucesso.")
+                messagebox.showinfo("Sucesso", "Limpeza adicionada.")
                 self.clear_form()
                 self.master.show_frame("CleanFrame")
             else:

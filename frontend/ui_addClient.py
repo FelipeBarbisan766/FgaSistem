@@ -5,7 +5,7 @@ import controllers.client_controller as controller
 class AddClientFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        tk.Label(self, text="Adicionar Novo Cliente").pack(pady=20)
+        tk.Label(self, text="Adicionar Cliente").pack(pady=20)
         
         tk.Label(self, text="Nome:").pack(pady=5) 
         self.name_entry = tk.Entry(self)

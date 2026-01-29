@@ -5,7 +5,7 @@ class ClientFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
 
-        tk.Label(self, text="Bem-vindo à tela de Clientes!").pack(pady=20)
+        tk.Label(self, text="Tela de Clientes!").pack(pady=20)
         tk.Button(
             self,
             text="Adicionar Cliente",

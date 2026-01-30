@@ -36,13 +36,13 @@ class ClientFrame(tk.Frame):
         self.pagination_bar = tk.Frame(self)
         self.pagination_bar.pack(fill="x", padx=10, pady=5)
 
-        self.prev_btn = tk.Button(self.pagination_bar, text="◀ Anterior", command=self.prev_page)
+        self.prev_btn = tk.Button(self.pagination_bar, text="Anterior", command=self.prev_page)
         self.prev_btn.pack(side="left")
 
         self.page_label = tk.Label(self.pagination_bar, text="")
         self.page_label.pack(side="left", padx=10)
 
-        self.next_btn = tk.Button(self.pagination_bar, text="Próximo ▶", command=self.next_page)
+        self.next_btn = tk.Button(self.pagination_bar, text="Próximo", command=self.next_page)
         self.next_btn.pack(side="left")
 
         tk.Button(

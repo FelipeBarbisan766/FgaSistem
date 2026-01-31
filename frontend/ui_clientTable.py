@@ -150,7 +150,7 @@ class ClientFrame(tk.Frame):
 
         for r in clients:
             id, name, address, email, phone = r
-            text = f"ID: {id} — Nome: {name} — Endereço: {address} — Email: {email} — Telefone: {phone}"
+            text = f"ID: {id} | Nome: {name} | Endereço: {address} | Email: {email} | Telefone: {phone}"
             tk.Label(self.list_container, text=text, anchor="w", justify="left").pack(fill="x", pady=2)
             tk.Button(
                 self.list_container,

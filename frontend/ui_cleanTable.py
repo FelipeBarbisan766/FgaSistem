@@ -76,9 +76,9 @@ class CleanFrame(tk.Frame):
 
         for r in cleans:
             id, date, price, quantity, unitPrice, status, clientName = r
-            text = (f"ID: {id} — Data: {date} — Preço: R$ {price:.2f} — "
-                    f"Quantidade: {quantity} — Preço Unitário: R$ {unitPrice:.2f} — "
-                    f"Status: {status} — Cliente: {clientName}")
+            text = (f"ID: {id} | Data: {date} | Preço: R$ {price:.2f} | "
+                    f"Quantidade: {quantity} | Preço Unitário: R$ {unitPrice:.2f} | "
+                    f"Status: {status} | Cliente: {clientName}")
             tk.Label(self.list_container, text=text, anchor="w", justify="left").pack(fill="x", pady=2)
             tk.Button(
                 self.list_container,

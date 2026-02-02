@@ -27,7 +27,7 @@ class ClientFrame(tk.Frame):
         self.search_entry.bind("<Escape>", lambda e: self.hide_search())
 
        
-        self.page_size = 20
+        self.page_size = 10
         self.page = 0
 
         self.list_container = tk.Frame(self)

@@ -22,4 +22,4 @@ class LoginFrame(tk.Frame):
         if auth.login(username, password):
             self.master.show_frame("HomeFrame")
         else:
-            messagebox.showerror("Erro de login", "Usuário ou senha incorretos")
+            messagebox.showerror("Erro de login", "Usuário ou senha Erados.")

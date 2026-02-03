@@ -39,7 +39,7 @@ class App(tk.Tk):
             try:
                 frame.on_show()
             except Exception as e:
-                print(f"Erro em on_show do frame {frame_name}: {e}")
+                print(f"Erro do frame {frame_name}: {e}")
 
         if hasattr(frame, "refresh"):
             try:

@@ -31,7 +31,7 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS cleans (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             date DATETIME NOT NULL,
-            price DECIMAL NOT NULL,
+            price DECIMAL,
             quantity INTEGER NOT NULL,
             unitPrice DECIMAL NOT NULL,
             status TEXT NOT NULL,

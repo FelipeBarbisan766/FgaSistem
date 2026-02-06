@@ -1,11 +1,11 @@
 from database import db_clean
 
-def get_clean_page(page: int, page_size: int = 20):
+def get_clean_page(page: int, page_size: int = 10):
     
     if page < 0:
         page = 0
     if page_size <= 0:
-        page_size = 20
+        page_size = 10
 
     offset = page * page_size
     return db_clean.search_clean_paginated(limit=page_size, offset=offset)

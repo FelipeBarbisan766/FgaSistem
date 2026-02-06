@@ -13,7 +13,7 @@ class CleanFrame(tk.Frame):
             command=lambda: master.show_frame("AddCleanFrame"),
         ).pack(pady=10)
 
-        self.page_size = 20
+        self.page_size = 10
         self.page = 0  
 
         self.list_container = tk.Frame(self)

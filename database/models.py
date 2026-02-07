@@ -32,7 +32,7 @@ def create_tables():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             date DATETIME NOT NULL,
             price DECIMAL,
-            quantity INTEGER NOT NULL,
+            quantity INTEGER,
             unitPrice DECIMAL NOT NULL,
             status TEXT NOT NULL,
             clientId INTEGER,

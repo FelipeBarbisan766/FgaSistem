@@ -33,8 +33,8 @@ def create_tables():
             date DATETIME NOT NULL,
             price DECIMAL,
             quantity INTEGER,
-            unitPrice DECIMAL NOT NULL,
-            status TEXT NOT NULL,
+            unitPrice DECIMAL,
+            status TEXT ,
             clientId INTEGER,
             FOREIGN KEY (clientId) REFERENCES clients(id)
         )

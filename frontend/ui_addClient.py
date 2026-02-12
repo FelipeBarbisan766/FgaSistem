@@ -34,7 +34,7 @@ class AddClientFrame(tk.Frame):
         try:
             name = self.name_entry.get().strip()
             if not name:
-                raise ValueError("Nome obrigatório.")
+                raise ValueError("O Nome é obrigatório.")
 
             address = self.address_entry.get().strip()
             phone = self.phone_entry.get().strip()
@@ -46,10 +46,10 @@ class AddClientFrame(tk.Frame):
         try:
             result = controller.post_client(name, address, phone, email)
             if result is True:
-                messagebox.showinfo("Sucesso", "Cliente adicionado com sucesso.")
+                messagebox.showinfo("Sucesso", "Cliente adicionado.")
                 self.clear_form()
                 self.master.show_frame("ClientFrame")
             else:
-                messagebox.showerror("Erro", f"Falha ao adicionar cliente: {result}")
+                messagebox.showerror("Erro", f"Falha adicionar cliente: {result}")
         except Exception as ex:
             messagebox.showerror("Erro", f"Ocorreu um erro ao salvar: {ex}")

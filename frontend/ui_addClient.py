@@ -34,7 +34,7 @@ class AddClientFrame(tk.Frame):
         try:
             name = self.name_entry.get().strip()
             if not name:
-                raise ValueError("Nome obrigatório.")
+                raise ValueError("O Nome é obrigatório.")
 
             address = self.address_entry.get().strip()
             phone = self.phone_entry.get().strip()

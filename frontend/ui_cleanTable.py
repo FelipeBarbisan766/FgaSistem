@@ -9,7 +9,7 @@ class CleanFrame(tk.Frame):
         tk.Label(self, text="Tela de Limpezas!").pack(pady=20)
         tk.Button(
             self,
-            text="Adicionar Limpeza",
+            text="Adicionar Nova Limpeza",
             command=lambda: master.show_frame("AddCleanFrame"),
         ).pack(pady=10)
 

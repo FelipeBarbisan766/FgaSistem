@@ -1,0 +1,109 @@
+<div class="space-y-6">
+  <div>
+    <a routerLink="/clientes" class="text-xs text-base-content/60 hover:text-base-content">← Clientes</a>
+    @if (client(); as c) {
+      <h1 class="mt-1 text-2xl font-semibold tracking-tight">{{ c.name }}</h1>
+      <p class="mt-1 text-sm text-base-content/60">
+        {{ c.email || '—' }}{{ c.phone ? ' · ' + c.phone : '' }}
+      </p>
+    }
+  </div>
+
+  <form
+    [formGroup]="addressForm"
+    (ngSubmit)="addAddress()"
+    class="grid gap-3 rounded-xl bg-base-100 p-5 shadow md:grid-cols-[1fr_2fr_1fr_auto]"
+  >
+    <input formControlName="label" placeholder="Apelido (ex: Telhado Principal)" class="input input-bordered w-full" />
+    <input formControlName="street" placeholder="Endereço" class="input input-bordered w-full" />
+    <input formControlName="city" placeholder="Cidade" class="input input-bordered w-full" />
+    <button type="submit" class="btn btn-primary" [disabled]="addressForm.invalid">+ Endereço</button>
+  </form>
+
+  <div class="space-y-4">
+    @for (entry of addresses(); track entry.address.id) {
+      <div class="rounded-xl bg-base-100 shadow">
+        <div class="flex items-start justify-between border-b border-base-200 px-5 py-4">
+          <div>
+            <div class="font-semibold">{{ entry.address.label }}</div>
+            <div class="text-xs text-base-content/60">
+              {{ entry.address.street }}{{ entry.address.city ? ' — ' + entry.address.city : '' }}
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <button
+              type="button"
+              (click)="toggleServiceForm(entry.address.id)"
+              class="btn btn-outline btn-primary btn-xs"
+            >
+              + Registrar serviço
+            </button>
+            <button type="button" (click)="removeAddress(entry.address)" class="btn btn-ghost btn-xs text-error">
+              Excluir
+            </button>
+          </div>
+        </div>
+
+        @if (openServiceFormFor() === entry.address.id) {
+          <form
+            [formGroup]="serviceForm"
+            (ngSubmit)="addService(entry.address.id)"
+            class="grid gap-3 border-b border-base-200 bg-base-200/40 px-5 py-4 md:grid-cols-[2fr_1fr_1fr_auto]"
+          >
+            <input formControlName="type" placeholder="Tipo de serviço" class="input input-bordered input-sm w-full" />
+            <input formControlName="performedAt" type="date" class="input input-bordered input-sm w-full" />
+            <input
+              formControlName="intervalDays"
+              type="number"
+              min="1"
+              placeholder="Intervalo (dias)"
+              class="input input-bordered input-sm w-full"
+            />
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="serviceForm.invalid">Salvar</button>
+          </form>
+        }
+
+        <ul class="divide-y divide-base-200">
+          @if (entry.services.length === 0) {
+            <li class="px-5 py-4 text-sm text-base-content/60">Nenhum serviço registrado.</li>
+          }
+          @for (service of entry.services; track service.id) {
+            @let level = alertLevelOf(service.nextCleaningDate);
+            <li class="flex items-center justify-between px-5 py-3">
+              <div>
+                <div class="text-sm font-medium">{{ service.type }}</div>
+                <div class="text-xs text-base-content/60">
+                  Feito em {{ formatDate(service.performedAt) }} · Próximo: {{ formatDate(service.nextCleaningDate) }}
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span
+                  class="badge badge-sm"
+                  [class.badge-error]="level === 'overdue'"
+                  [class.badge-warning]="level === 'soon'"
+                  [class.badge-success]="level === 'ok'"
+                >
+                  {{
+                    level === 'overdue'
+                      ? 'Vencido ' + -daysUntilOf(service.nextCleaningDate) + 'd'
+                      : level === 'soon'
+                        ? 'Em ' + daysUntilOf(service.nextCleaningDate) + 'd'
+                        : 'OK · ' + daysUntilOf(service.nextCleaningDate) + 'd'
+                  }}
+                </span>
+                <button type="button" (click)="removeService(entry.address.id, service)" class="btn btn-ghost btn-xs">
+                  Remover
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+    @if (addresses().length === 0) {
+      <div class="rounded-xl border border-dashed border-base-300 p-8 text-center text-sm text-base-content/60">
+        Nenhum endereço cadastrado. Use o formulário acima.
+      </div>
+    }
+  </div>
+</div>

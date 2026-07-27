@@ -1,0 +1,57 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-2xl font-semibold tracking-tight">Histórico de serviços</h1>
+    <p class="mt-1 text-sm text-base-content/60">Todas as limpezas realizadas.</p>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <input
+      [value]="searchTerm()"
+      (input)="updateSearchTerm($any($event.target).value)"
+      placeholder="Buscar por serviço, endereço ou cliente…"
+      class="input input-bordered min-w-[220px] flex-1"
+    />
+    <select
+      [value]="clientFilter()"
+      (change)="updateClientFilter($any($event.target).value)"
+      class="select select-bordered"
+    >
+      <option value="">Todos os clientes</option>
+      @for (client of clients(); track client.id) {
+        <option [value]="client.id">{{ client.name }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="overflow-x-auto rounded-xl bg-base-100 shadow">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Serviço</th>
+          <th>Cliente</th>
+          <th>Endereço</th>
+          <th>Próximo</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (service of filteredServices(); track service.id) {
+          <tr class="hover">
+            <td class="font-medium">{{ formatDate(service.performedAt) }}</td>
+            <td>{{ service.type }}</td>
+            <td>
+              <a [routerLink]="['/clientes', service.clientId]" class="link link-hover">{{ service.clientName }}</a>
+            </td>
+            <td class="text-base-content/60">{{ service.addressLabel }}</td>
+            <td class="text-base-content/60">{{ formatDate(service.nextCleaningDate) }}</td>
+          </tr>
+        }
+        @if (filteredServices().length === 0) {
+          <tr>
+            <td colspan="5" class="py-8 text-center text-base-content/60">Nenhum registro.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

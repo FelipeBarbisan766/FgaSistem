@@ -1,0 +1,55 @@
+<div class="space-y-6">
+  <div class="flex items-end justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold tracking-tight">Clientes</h1>
+      <p class="mt-1 text-sm text-base-content/60">{{ clients().length }} cadastrado(s).</p>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    class="grid gap-3 rounded-xl bg-base-100 p-5 shadow md:grid-cols-[1.5fr_1.5fr_1fr_auto]"
+  >
+    <input formControlName="name" placeholder="Nome do cliente" class="input input-bordered w-full" />
+    <input formControlName="email" type="email" placeholder="Email (opcional)" class="input input-bordered w-full" />
+    <input formControlName="phone" placeholder="Telefone" class="input input-bordered w-full" />
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Adicionar</button>
+  </form>
+
+  <div class="overflow-x-auto rounded-xl bg-base-100 shadow">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Contato</th>
+          <th>Endereços</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (client of clients(); track client.id) {
+          <tr class="hover">
+            <td class="font-medium">
+              <a [routerLink]="['/clientes', client.id]" class="link link-hover">{{ client.name }}</a>
+            </td>
+            <td class="text-base-content/60">
+              {{ client.email || '—' }}{{ client.phone ? ' · ' + client.phone : '' }}
+            </td>
+            <td class="text-base-content/60">{{ client.addressCount }}</td>
+            <td class="text-right">
+              <button type="button" (click)="removeClient(client)" class="btn btn-ghost btn-xs text-error">
+                Excluir
+              </button>
+            </td>
+          </tr>
+        }
+        @if (clients().length === 0) {
+          <tr>
+            <td colspan="4" class="py-8 text-center text-base-content/60">Nenhum cliente cadastrado.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

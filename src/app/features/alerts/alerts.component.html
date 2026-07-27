@@ -1,0 +1,58 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-2xl font-semibold tracking-tight">Alertas</h1>
+    <p class="mt-1 text-sm text-base-content/60">Serviços vencidos e próximos vencimentos.</p>
+  </div>
+
+  <div class="rounded-xl bg-base-100 shadow">
+    <div class="border-b border-base-200 px-5 py-3">
+      <h2 class="font-semibold text-error">Vencidos ({{ overdue().length }})</h2>
+    </div>
+    <ul class="divide-y divide-base-200">
+      @if (overdue().length === 0) {
+        <li class="p-5 text-sm text-base-content/60">Nada vencido.</li>
+      }
+      @for (service of overdue(); track service.id) {
+        <li class="flex items-center justify-between px-5 py-3">
+          <div>
+            <div class="text-sm font-medium">{{ service.type }}</div>
+            <div class="text-xs text-base-content/60">
+              <a [routerLink]="['/clientes', service.clientId]" class="hover:text-primary">{{ service.clientName }}</a>
+              · {{ service.addressLabel }}
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-base-content/60">{{ formatDate(service.nextCleaningDate) }}</div>
+            <span class="badge badge-error badge-sm">Vencido há {{ -daysUntilOf(service.nextCleaningDate) }}d</span>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="rounded-xl bg-base-100 shadow">
+    <div class="border-b border-base-200 px-5 py-3">
+      <h2 class="font-semibold">Próximos 30 dias ({{ soon().length }})</h2>
+    </div>
+    <ul class="divide-y divide-base-200">
+      @if (soon().length === 0) {
+        <li class="p-5 text-sm text-base-content/60">Nada previsto para os próximos 30 dias.</li>
+      }
+      @for (service of soon(); track service.id) {
+        <li class="flex items-center justify-between px-5 py-3">
+          <div>
+            <div class="text-sm font-medium">{{ service.type }}</div>
+            <div class="text-xs text-base-content/60">
+              <a [routerLink]="['/clientes', service.clientId]" class="hover:text-primary">{{ service.clientName }}</a>
+              · {{ service.addressLabel }}
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-base-content/60">{{ formatDate(service.nextCleaningDate) }}</div>
+            <span class="badge badge-warning badge-sm">Em {{ daysUntilOf(service.nextCleaningDate) }}d</span>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

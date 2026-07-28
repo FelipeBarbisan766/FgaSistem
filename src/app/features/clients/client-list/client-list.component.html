@@ -12,8 +12,7 @@
     class="grid gap-3 rounded-xl bg-base-100 p-5 shadow md:grid-cols-[1.5fr_1.5fr_1fr_auto]"
   >
     <input formControlName="name" placeholder="Nome do cliente" class="input input-bordered w-full" />
-    <input formControlName="email" type="email" placeholder="Email (opcional)" class="input input-bordered w-full" />
-    <input formControlName="phone" placeholder="Telefone" class="input input-bordered w-full" />
+    <input formControlName="phone" placeholder="Telefone" class="input input-bordered w-full" mask="(00) 00000-0000" placeholder="(00) 00000-0000" />
     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Adicionar</button>
   </form>
 
@@ -34,7 +33,7 @@
               <a [routerLink]="['/clientes', client.id]" class="link link-hover">{{ client.name }}</a>
             </td>
             <td class="text-base-content/60">
-              {{ client.email || '—' }}{{ client.phone ? ' · ' + client.phone : '' }}
+              {{ client.phone ? ' · ' + client.phone : '' }}
             </td>
             <td class="text-base-content/60">{{ client.addressCount }}</td>
             <td class="text-right">

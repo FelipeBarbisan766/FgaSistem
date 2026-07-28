@@ -62,7 +62,7 @@ export class ClientDetailComponent {
     }
 
     const { label, street, city } = this.addressForm.getRawValue();
-    this.addressService.create(this.clientId, { label, street, city: city || undefined }).subscribe((address) => {
+    this.addressService.create(this.clientId, { label: label || undefined, street: street || undefined, city }).subscribe((address) => {
       this.addresses.update((current) => [...current, { address, services: [] }]);
       this.addressForm.reset();
     });

@@ -1,11 +1,13 @@
 export interface Client {
   id: string;
   name: string;
-  phone: string | null;
+  phoneNumber: string | null;
   addressCount: number;
+  alias?: string;
 }
 
 export interface CreateClientRequest {
   name: string;
-  phone?: string;
+  phoneNumber?: string;
+  alias?: string;
 }

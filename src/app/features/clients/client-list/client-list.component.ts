@@ -4,10 +4,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ClientService } from '../../../core/services/client.service';
 import { Client } from '../../../core/models/client.model';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-client-list',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, NgxMaskDirective],
   templateUrl: './client-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -19,7 +20,6 @@ export class ClientListComponent {
 
   protected readonly form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
-    email: [''],
     phone: [''],
   });
 
@@ -32,9 +32,9 @@ export class ClientListComponent {
       return;
     }
 
-    const { name, email, phone } = this.form.getRawValue();
+    const { name, phone } = this.form.getRawValue();
     this.clientService
-      .create({ name, email: email || undefined, phone: phone || undefined })
+      .create({ name, phone: phone || undefined })
       .subscribe((client) => {
         this.clients.update((current) => [...current, client]);
         this.form.reset();

@@ -4,10 +4,9 @@ export interface CleaningService {
   id: string;
   addressId: string;
   type: string;
-  performedAt: string; // ISO date
+  performedAt: string; 
   intervalDays: number;
-  /** Pré-calculado pela API (performedAt + intervalDays), consumido direto pelo front. */
-  nextCleaningDate: string; // ISO date
+  nextCleaningDate: string; 
 }
 
 export interface CreateCleaningServiceRequest {
@@ -16,11 +15,6 @@ export interface CreateCleaningServiceRequest {
   intervalDays: number;
 }
 
-/**
- * Versão "achatada" de CleaningService usada nas telas que cruzam
- * Client -> Address -> Service (Dashboard, Histórico global, Alertas),
- * evitando que o Angular precise fazer join de 3 coleções em memória.
- */
 export interface CleaningServiceSummary extends CleaningService {
   addressLabel: string;
   clientId: string;

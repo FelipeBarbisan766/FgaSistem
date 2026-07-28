@@ -8,7 +8,7 @@ import { Client, CreateClientRequest } from '../models/client.model';
 @Injectable({ providedIn: 'root' })
 export class ClientService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = `${environment.apiUrl}/clients`;
+  private readonly baseUrl = `${environment.apiUrl}/client`;
 
   getAll(): Observable<Client[]> {
     return this.http.get<Client[]>(this.baseUrl);

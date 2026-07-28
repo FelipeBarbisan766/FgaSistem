@@ -7,7 +7,7 @@ export interface Address {
 }
 
 export interface CreateAddressRequest {
-  label: string;
-  street: string;
-  city?: string;
+  label?: string;
+  street?: string;
+  city: string;
 }

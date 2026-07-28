@@ -12,7 +12,8 @@
     class="grid gap-3 rounded-xl bg-base-100 p-5 shadow md:grid-cols-[1.5fr_1.5fr_1fr_auto]"
   >
     <input formControlName="name" placeholder="Nome do cliente" class="input input-bordered w-full" />
-    <input formControlName="phone" placeholder="Telefone" class="input input-bordered w-full" mask="(00) 00000-0000" placeholder="(00) 00000-0000" />
+    <input formControlName="phoneNumber" placeholder="Telefone" class="input input-bordered w-full" mask="(00) 00000-0000" placeholder="(00) 00000-0000" />
+    <input formControlName="alias" placeholder="Vulgo" class="input input-bordered w-full" />
     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Adicionar</button>
   </form>
 
@@ -30,10 +31,10 @@
         @for (client of clients(); track client.id) {
           <tr class="hover">
             <td class="font-medium">
-              <a [routerLink]="['/clientes', client.id]" class="link link-hover">{{ client.name }}</a>
+              <a [routerLink]="['/clientes', client.id]" class="link link-hover">{{ client.name }} {{ client.alias ? '(' + client.alias + ')' : '' }}</a>
             </td>
             <td class="text-base-content/60">
-              {{ client.phone ? ' · ' + client.phone : '' }}
+              {{ client.phoneNumber ? client.phoneNumber : '' }}
             </td>
             <td class="text-base-content/60">{{ client.addressCount }}</td>
             <td class="text-right">

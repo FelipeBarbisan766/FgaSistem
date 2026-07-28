@@ -20,7 +20,8 @@ export class ClientListComponent {
 
   protected readonly form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
-    phone: [''],
+    phoneNumber: [''],
+    alias: [''],
   });
 
   constructor() {
@@ -32,9 +33,9 @@ export class ClientListComponent {
       return;
     }
 
-    const { name, phone } = this.form.getRawValue();
+    const { name, phoneNumber, alias } = this.form.getRawValue();
     this.clientService
-      .create({ name, phone: phone || undefined })
+      .create({ name, phoneNumber: phoneNumber || undefined, alias: alias || undefined })
       .subscribe((client) => {
         this.clients.update((current) => [...current, client]);
         this.form.reset();

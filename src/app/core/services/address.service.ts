@@ -11,14 +11,14 @@ export class AddressService {
   private readonly baseUrl = environment.apiUrl;
 
   getByClient(clientId: string): Observable<Address[]> {
-    return this.http.get<Address[]>(`${this.baseUrl}/clients/${clientId}/addresses`);
+    return this.http.get<Address[]>(`${this.baseUrl}/address/client/${clientId}`);
   }
 
   create(clientId: string, request: CreateAddressRequest): Observable<Address> {
-    return this.http.post<Address>(`${this.baseUrl}/clients/${clientId}/addresses`, request);
+    return this.http.post<Address>(`${this.baseUrl}/address/client/${clientId}`, request);
   }
 
   delete(addressId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/addresses/${addressId}`);
+    return this.http.delete<void>(`${this.baseUrl}/address/${addressId}`);
   }
 }

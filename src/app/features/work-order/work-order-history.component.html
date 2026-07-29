@@ -8,7 +8,7 @@
     <input
       [value]="searchTerm()"
       (input)="updateSearchTerm($any($event.target).value)"
-      placeholder="Buscar por serviço, endereço ou cliente…"
+      placeholder="Buscar por serviço, cliente ou descrição…"
       class="input input-bordered min-w-[220px] flex-1"
     />
     <select
@@ -17,7 +17,7 @@
       class="select select-bordered"
     >
       <option value="">Todos os clientes</option>
-      @for (client of clients(); track client.id) {
+      @for (client of clientOptions(); track client.id) {
         <option [value]="client.id">{{ client.name }}</option>
       }
     </select>
@@ -30,23 +30,23 @@
           <th>Data</th>
           <th>Serviço</th>
           <th>Cliente</th>
-          <th>Endereço</th>
-          <th>Próximo</th>
+          <th>Preço</th>
+          <th>Há quantos dias</th>
         </tr>
       </thead>
       <tbody>
-        @for (service of filteredServices(); track service.id) {
+        @for (workOrder of filteredWorkOrders(); track workOrder.id) {
           <tr class="hover">
-            <td class="font-medium">{{ formatDate(service.performedAt) }}</td>
-            <td>{{ service.type }}</td>
+            <td class="font-medium">{{ formatDate(workOrder.date) }}</td>
+            <td>{{ typeLabels[workOrder.type] }}</td>
             <td>
-              <a [routerLink]="['/clientes', service.clientId]" class="link link-hover">{{ service.clientName }}</a>
+              <a [routerLink]="['/clientes', workOrder.clientId]" class="link link-hover">{{ workOrder.clientName }}</a>
             </td>
-            <td class="text-base-content/60">{{ service.addressLabel }}</td>
-            <td class="text-base-content/60">{{ formatDate(service.nextCleaningDate) }}</td>
+            <td class="text-base-content/60">{{ workOrder.price ? ('R$ ' + workOrder.price) : '—' }}</td>
+            <td class="text-base-content/60">{{ workOrder.daysSinceCompleted }}d</td>
           </tr>
         }
-        @if (filteredServices().length === 0) {
+        @if (filteredWorkOrders().length === 0) {
           <tr>
             <td colspan="5" class="py-8 text-center text-base-content/60">Nenhum registro.</td>
           </tr>

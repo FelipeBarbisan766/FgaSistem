@@ -6,12 +6,12 @@ export const routes: Routes = [
     path: '',
     component: ShellComponent,
     children: [
-      {
-        path: '',
-        loadComponent: () =>
-          import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-        title: 'Painel — FgaSistem',
-      },
+      // {
+      //   path: '',
+      //   loadComponent: () =>
+      //     import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+      //   title: 'Painel — FgaSistem',
+      // },
       {
         path: 'clientes',
         loadComponent: () =>
@@ -31,17 +31,17 @@ export const routes: Routes = [
       {
         path: 'servicos',
         loadComponent: () =>
-          import('./features/services-history/services-history.component').then(
-            (m) => m.ServicesHistoryComponent,
+          import('./features/work-order/work-order-history.component').then(
+            (m) => m.WorkOrderHistoryComponent,
           ),
         title: 'Histórico — FgaSistem',
       },
-      {
-        path: 'alertas',
-        loadComponent: () =>
-          import('./features/alerts/alerts.component').then((m) => m.AlertsComponent),
-        title: 'Alertas — FgaSistem',
-      },
+      // {
+      //   path: 'alertas',
+      //   loadComponent: () =>
+      //     import('./features/alerts/alerts.component').then((m) => m.AlertsComponent),
+      //   title: 'Alertas — FgaSistem',
+      // },
       { path: '**', redirectTo: '' },
     ],
   },

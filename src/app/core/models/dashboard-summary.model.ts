@@ -1,9 +1,8 @@
-// import { CleaningServiceSummary } from './cleaning-service.model';
+import { WorkOrder } from './work-order.model';
 
-// export interface DashboardSummary {
-//   totalClients: number;
-//   totalAddresses: number;
-//   overdueServices: CleaningServiceSummary[];
-//   soonServices: CleaningServiceSummary[];
-//   recentServices: CleaningServiceSummary[];
-// }
+export interface DashboardSummary {
+  totalClients: number;
+  totalAddresses: number;
+  latestPerAddress: WorkOrder[];
+  recentWorkOrders: WorkOrder[];
+}

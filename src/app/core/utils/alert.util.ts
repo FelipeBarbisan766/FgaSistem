@@ -8,9 +8,15 @@ export function daysUntilNext(daysSinceCompleted: number): number {
   return CLEANING_INTERVAL_DAYS - daysSinceCompleted;
 }
 
+export const ALERT_THRESHOLD_DAYS = 180;
+const SOON_WINDOW_DAYS = 30;
+
 export function getAlertLevel(daysSinceCompleted: number): AlertLevel {
-  const remaining = daysUntilNext(daysSinceCompleted);
-  if (remaining < 0) return 'overdue';
-  if (remaining <= SOON_THRESHOLD_DAYS) return 'soon';
+  if (daysSinceCompleted >= ALERT_THRESHOLD_DAYS) {
+    return 'overdue';
+  }
+  if (daysSinceCompleted >= ALERT_THRESHOLD_DAYS - SOON_WINDOW_DAYS) {
+    return 'soon';
+  }
   return 'ok';
 }

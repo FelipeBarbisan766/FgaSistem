@@ -8,6 +8,23 @@ export const WORK_ORDER_TYPE_LABELS: Record<WorkOrderType, string> = {
   Outers: 'Outros',
 };
 
+export interface ClientResponse {
+  id: string;
+  isActive: boolean;
+  name: string;
+  phoneNumber: string | null;
+  alias: string | null;
+}
+
+export interface AddressResponse {
+  id: string;
+  isActive: boolean;
+  label: string | null;
+  street: string | null;
+  city: string | null;
+  client: ClientResponse;
+}
+
 export interface WorkOrder {
   id: string;
   isActive: boolean;
@@ -17,9 +34,7 @@ export interface WorkOrder {
   date: string;
   description: string | null;
   daysSinceCompleted: number;
-  addressId: string;
-  clientId: string;
-  clientName: string;
+  address: AddressResponse;
 }
 
 export interface CreateWorkOrderRequest {

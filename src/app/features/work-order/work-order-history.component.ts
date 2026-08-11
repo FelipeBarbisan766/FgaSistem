@@ -21,7 +21,7 @@ export class WorkOrderHistoryComponent {
   protected readonly clientOptions = computed(() => {
     const seen = new Map<string, string>();
     for (const workOrder of this.workOrders()) {
-      seen.set(workOrder.clientId, workOrder.clientName);
+      seen.set(workOrder.address.client.id, workOrder.address.client.name);
     }
     return Array.from(seen, ([id, name]) => ({ id, name }));
   });
@@ -31,12 +31,12 @@ export class WorkOrderHistoryComponent {
     const clientId = this.clientFilter();
 
     return this.workOrders()
-      .filter((workOrder) => !clientId || workOrder.clientId === clientId)
+      .filter((workOrder) => !clientId || workOrder.address.client.id === clientId)
       .filter((workOrder) => {
         if (!term) return true;
         return (
           workOrder.type.toLowerCase().includes(term) ||
-          workOrder.clientName.toLowerCase().includes(term) ||
+          workOrder.address.client.name.toLowerCase().includes(term) ||
           (workOrder.description ?? '').toLowerCase().includes(term)
         );
       })
@@ -47,7 +47,7 @@ export class WorkOrderHistoryComponent {
   protected readonly typeLabels = WORK_ORDER_TYPE_LABELS;
 
   constructor() {
-    this.workOrderService.getAll().subscribe((workOrders) => this.workOrders.set(workOrders));
+    this.workOrderService.getLatestPerAddress().subscribe((workOrders) => this.workOrders.set(workOrders));
   }
 
   protected updateSearchTerm(value: string): void {

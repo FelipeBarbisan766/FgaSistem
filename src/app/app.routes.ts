@@ -6,12 +6,12 @@ export const routes: Routes = [
     path: '',
     component: ShellComponent,
     children: [
-      // {
-      //   path: '',
-      //   loadComponent: () =>
-      //     import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-      //   title: 'Painel — FgaSistem',
-      // },
+      {
+        path: '',
+        loadComponent: () =>
+          import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+        title: 'Painel — FgaSistem',
+      },
       {
         path: 'clientes',
         loadComponent: () =>

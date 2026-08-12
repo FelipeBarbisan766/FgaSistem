@@ -31,18 +31,8 @@ export class WorkOrderService {
   }
 
   /**
-   * Feed global usado pelo Histórico — GetAll com filtro por query string
-   * (ex: ?addressId=, ?clientId=), conforme decisão de rotas flat.
-   */
-  getAll(params?: { addressId?: string; clientId?: string }): Observable<WorkOrder[]> {
-    let query = '';
-    if (params?.addressId) query += `?addressId=${params.addressId}`;
-    if (params?.clientId) query += `${query ? '&' : '?'}clientId=${params.clientId}`;
-    return this.http.get<WorkOrder[]>(`${this.baseUrl}${query}`);
-  }
-
-  /**
-   * Última WorkOrder de cada endereço — usado no Dashboard de alertas.
+   * Última WorkOrder de cada endereço, com Address e Client aninhados —
+   * usado no Dashboard de alertas e agora também no Histórico.
    */
   getLatestPerAddress(): Observable<WorkOrder[]> {
     return this.http.get<WorkOrder[]>(`${this.baseUrl}/latests`);
